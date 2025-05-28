@@ -603,7 +603,7 @@ export class SideMenuView<
 }
 
 export const sideMenuPluginKey = new PluginKey("SideMenuPlugin");
-
+// 左侧拖动菜单的插件
 export class SideMenuProsemirrorPlugin<
   BSchema extends BlockSchema,
   I extends InlineContentSchema,

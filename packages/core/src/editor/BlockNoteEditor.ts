@@ -754,7 +754,7 @@ export class BlockNoteEditor<
         if (ext instanceof BlockNoteExtension && !ext.plugins.length) {
           return undefined;
         }
-
+        // 使用plugins来构建tiptap的扩展，会直接包含sidemenu在里面
         // "blocknote" extensions (prosemirror plugins)
         return Extension.create({
           name: key,
