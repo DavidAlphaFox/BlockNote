@@ -80,7 +80,7 @@ export async function handleFileInsertion<
     );
     return;
   }
-
+  //进行文件上传操作
   const dataTransfer =
     "dataTransfer" in event ? event.dataTransfer : event.clipboardData;
   if (dataTransfer === null) {

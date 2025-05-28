@@ -120,7 +120,7 @@ type NamesMatch<Blocks extends Record<string, BlockConfig>> = Blocks extends {
 }
   ? Blocks
   : never;
-
+// 工具类型，对于给定的Object Block元数据据，确保它所有的key都可以匹配TipTap的节点
 // A Schema contains all the types (Configs) supported in an editor
 // The keys are the "type" of a block
 export type BlockSchema = NamesMatch<Record<string, BlockConfig>>;
