@@ -19,7 +19,7 @@ export type BlockNoteContextValue<
   editor?: BlockNoteEditor<BSchema, ISchema, SSchema>;
   colorSchemePreference?: "light" | "dark";
 };
-
+//Block的Context
 export const BlockNoteContext = createContext<
   BlockNoteContextValue | undefined
 >(undefined);

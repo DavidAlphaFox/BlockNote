@@ -47,7 +47,7 @@ export type BlockNoteViewProps<
 > = {
   editor: BlockNoteEditor<BSchema, ISchema, SSchema>;
 
-  theme?: "light" | "dark";
+  theme?: "light" | "dark"; //主题定义
 
   /**
    * Whether to render the editor element itself.
@@ -55,25 +55,25 @@ export type BlockNoteViewProps<
    *
    * @default true
    */
-  renderEditor?: boolean;
+  renderEditor?: boolean; //此处说明是否用库的渲染方案进行渲染，否则需要自己进行渲染
 
   /**
    * Locks the editor from being editable by the user if set to `false`.
    *
    * @default true
    */
-  editable?: boolean;
+  editable?: boolean; //是否可编辑
   /**
    * A callback function that runs whenever the text cursor position or selection changes.
    */
-  onSelectionChange?: () => void;
+  onSelectionChange?: () => void; //当光标更新位置了，或者某些内容被选中了
 
   /**
    * A callback function that runs whenever the editor's contents change.
    */
   onChange?: Parameters<
     BlockNoteEditor<BSchema, ISchema, SSchema>["onChange"]
-  >[0];
+  >[0]; //编辑器内容发生变化了
 
   children?: ReactNode;
 
@@ -83,7 +83,7 @@ export type BlockNoteViewProps<
   "onChange" | "onSelectionChange" | "children"
 > &
   BlockNoteDefaultUIProps;
-
+// 整个编辑器的组件，包含了Container和Editor
 function BlockNoteViewComponent<
   BSchema extends BlockSchema,
   ISchema extends InlineContentSchema,
@@ -230,7 +230,7 @@ export const BlockNoteViewRaw = React.forwardRef(BlockNoteViewComponent) as <
     ref?: React.ForwardedRef<HTMLDivElement>;
   },
 ) => ReturnType<typeof BlockNoteViewComponent<BSchema, ISchema, SSchema>>;
-
+// 编辑器视图
 /**
  * Renders the contentEditable editor itself (.bn-editor element) and the
  * default UI elements.

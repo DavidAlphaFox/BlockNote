@@ -19,7 +19,7 @@ export type BlockNoteDefaultUIProps = {
   emojiPicker?: boolean;
   comments?: boolean;
 };
-
+//BlockNote的默认UI
 export function BlockNoteDefaultUI(props: BlockNoteDefaultUIProps) {
   const editor = useBlockNoteEditor();
 

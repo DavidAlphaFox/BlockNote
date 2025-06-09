@@ -25,7 +25,7 @@ const mantineTheme = {
   // Removes button press effect
   activeClassName: "",
 };
-
+//此处需要3个不同的Schema，分别针对区块，inline和样式
 export const BlockNoteView = <
   BSchema extends BlockSchema,
   ISchema extends InlineContentSchema,
@@ -40,7 +40,7 @@ export const BlockNoteView = <
           light: Theme;
           dark: Theme;
         };
-  },
+  }, // 此处扩充了Theme的属性定义
 ) => {
   const { className, theme, ...rest } = props;
 

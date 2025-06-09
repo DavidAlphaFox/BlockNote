@@ -20,7 +20,7 @@ export type BlockNoteTipTapEditorOptions = Partial<
 > & {
   content: PartialBlock<any, any, any>[];
 };
-
+//继承自TiptapEditor，此处BlockNote对它做了一些自定义的设置和和修改
 /**
  * Custom Editor class that extends TiptapEditor and separates
  * the creation of the view from the constructor.
@@ -48,6 +48,8 @@ export class BlockNoteTipTapEditor extends TiptapEditor {
         globalThis.window.setTimeout = oldSetTimeout;
       }
     }
+    //此处BlockNoteTipTapEditor将状态建立和Eidtor的视图建立进行分割
+    //因此需要阻止父类TiptapEditor的setTimeout函数标记isInitialized完成
   };
 
   protected constructor(
@@ -131,7 +133,7 @@ export class BlockNoteTipTapEditor extends TiptapEditor {
       doc,
       schema: this.schema,
       // selection: selection || undefined,
-    });
+    }); //创建编辑器的状态，使用的是PromseMirror-State
   }
 
   get state() {
@@ -254,8 +256,8 @@ export class BlockNoteTipTapEditor extends TiptapEditor {
         markViews[extension.name] =
           extension.config.addMarkView(blockNoteEditor);
       }
-    });
-
+    }); //猴子补丁，用来还Mark视图？
+    //创建编辑视图，prosemirror-view
     this.view = new EditorView(
       { mount: this.options.element as any }, // use mount option so that we reuse the existing element instead of creating a new one
       {
@@ -306,7 +308,7 @@ export class BlockNoteTipTapEditor extends TiptapEditor {
       this.options.element = element;
       this.createViewAlternative(blockNoteEditor, contentComponent);
     }
-  };
+  }; //在执行了mount函数后，才会将编辑器的视图创建出来，才完成了真正的initialized
 }
 
 (BlockNoteTipTapEditor.prototype as any).createView = function () {

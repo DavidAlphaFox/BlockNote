@@ -409,7 +409,7 @@ const blockNoteTipTapOptions = {
   enablePasteRules: true,
   enableCoreExtensions: false,
 };
-
+// 编辑器的实现
 export class BlockNoteEditor<
   BSchema extends BlockSchema = DefaultBlockSchema,
   ISchema extends InlineContentSchema = DefaultInlineContentSchema,
@@ -565,21 +565,21 @@ export class BlockNoteEditor<
         "editable initialization option is deprecated, use <BlockNoteView editable={true/false} />, or alternatively editor.isEditable = true/false",
       );
     }
-
+    // 国际化字典
     this.dictionary = options.dictionary || en;
     this.settings = {
       tables: {
-        splitCells: options?.tables?.splitCells ?? false,
-        cellBackgroundColor: options?.tables?.cellBackgroundColor ?? false,
-        cellTextColor: options?.tables?.cellTextColor ?? false,
-        headers: options?.tables?.headers ?? false,
-      },
+        splitCells: options?.tables?.splitCells ?? false, //是否可以分割或者合并单元格
+        cellBackgroundColor: options?.tables?.cellBackgroundColor ?? false, //单元格背景颜色是否可以更改
+        cellTextColor: options?.tables?.cellTextColor ?? false, //单元格内容颜色是否可以更改
+        headers: options?.tables?.headers ?? false, //是否可以让单元格变成表头
+      }, //table的设置
       codeBlock: {
-        indentLineWithTab: options?.codeBlock?.indentLineWithTab ?? true,
-        defaultLanguage: options?.codeBlock?.defaultLanguage ?? "text",
-        supportedLanguages: options?.codeBlock?.supportedLanguages ?? {},
-        createHighlighter: options?.codeBlock?.createHighlighter ?? undefined,
-      },
+        indentLineWithTab: options?.codeBlock?.indentLineWithTab ?? true, //按下Tab对行进行缩进
+        defaultLanguage: options?.codeBlock?.defaultLanguage ?? "text", //默认语言
+        supportedLanguages: options?.codeBlock?.supportedLanguages ?? {}, //支持的语言
+        createHighlighter: options?.codeBlock?.createHighlighter ?? undefined, //高亮函数
+      }, //代码块
     };
 
     // apply defaults
@@ -592,7 +592,7 @@ export class BlockNoteEditor<
         ...this.dictionary.placeholders,
         ...options.placeholders,
       },
-    };
+    }; //构建默认的选项
 
     if (newOptions.comments && !newOptions.resolveUsers) {
       throw new Error("resolveUsers is required when using comments");
@@ -605,7 +605,7 @@ export class BlockNoteEditor<
     this.blockImplementations = newOptions.schema.blockSpecs;
     this.inlineContentImplementations = newOptions.schema.inlineContentSpecs;
     this.styleImplementations = newOptions.schema.styleSpecs;
-
+    // 添加对应的扩展插件
     this.extensions = getBlockNoteExtensions({
       editor: this,
       domAttributes: newOptions.domAttributes || {},
@@ -787,7 +787,7 @@ export class BlockNoteEditor<
         transformPasted,
       },
     };
-
+    //创建tiptap的编辑器
     if (!this.headless) {
       this._tiptapEditor = BlockNoteTipTapEditor.create(
         tiptapOptions,

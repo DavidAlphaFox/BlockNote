@@ -25,6 +25,7 @@ export const useCreateBlockNote = <
 ) => {
   return useMemo(() => {
     const editor = BlockNoteEditor.create<BSchema, ISchema, SSchema>(options);
+    //创建Editor
     if (window) {
       // for testing / dev purposes
       (window as any).ProseMirror = editor._tiptapEditor;
